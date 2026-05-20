@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Suta Sensei — Kana</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap"
+    />
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/components.css" />
+    <link rel="stylesheet" href="../css/pages.css" />
+  </head>
+  <body>
+    <div class="top-bar">
+      <button class="back-btn" onclick="goBack()" aria-label="Back">←</button>
+      <div class="topbar-right">
+        <button class="mode-btn" id="modeBtn" onclick="toggleMode()">
+          🃏 Flashcards
+        </button>
+        <button class="theme-btn" id="themeBtn" onclick="toggleTheme()">
+          🌙
+        </button>
+        <button class="lang-btn" id="langBtn" onclick="toggleLanguage()">
+          EN
+        </button>
+      </div>
+    </div>
+    <div class="container">
+      <h1 id="pageTitle">Hiragana</h1>
+      <div id="studyView">
+        <div class="kana-grid" id="kanaGrid"></div>
+      </div>
+      <div id="flashcardView" class="flashcard-view hidden">
+        <div class="fc-header">
+          <span class="fc-progress" id="fcProgress">1 / 46</span>
+          <label class="fc-shuffle-label">
+            <input
+              type="checkbox"
+              id="fcShuffle"
+              onchange="fcToggleShuffle()"
+            />
+            <span data-lang="shuffle">Shuffle</span>
+          </label>
+        </div>
+        <div class="fc-scene" onclick="fcFlip()">
+          <div class="fc-card-inner" id="fcCardInner">
+            <div class="fc-face fc-front">
+              <span class="fc-jp-text" id="fcFront">あ</span>
+              <span class="fc-hint" id="fcHint">Tap to flip</span>
+            </div>
+            <div class="fc-face fc-back">
+              <span class="fc-romaji-text" id="fcRomaji">a</span>
+            </div>
+          </div>
+        </div>
+        <div class="fc-controls">
+          <button class="fc-btn fc-btn-nav" id="fcPrevBtn" onclick="fcPrev()">
+            ← Prev
+          </button>
+          <button
+            class="fc-btn fc-btn-reset"
+            id="fcResetBtn"
+            onclick="fcReset()"
+          >
+            ↺ Reset
+          </button>
+          <button class="fc-btn fc-btn-nav" id="fcNextBtn" onclick="fcNext()">
+            Next →
+          </button>
+        </div>
+      </div>
+    </div>
+    <script src="../js/data.js"></script>
+    <script src="../js/core.js"></script>
+    <script src="../js/kana.js"></script>
+  </body>
+</html>

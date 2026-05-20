@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Suta Sensei — N5</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap"
+    />
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/components.css" />
+  </head>
+  <body>
+    <div class="top-bar">
+      <button class="back-btn" onclick="goBack()" aria-label="Back">←</button>
+      <div class="topbar-right">
+        <button class="theme-btn" id="themeBtn" onclick="toggleTheme()">
+          🌙
+        </button>
+        <button class="lang-btn" id="langBtn" onclick="toggleLanguage()">
+          EN
+        </button>
+      </div>
+    </div>
+
+    <div class="container">
+      <h1 data-lang="pilih">Pilih Materi</h1>
+      <p data-lang="pilihDesc">Mau belajar apa hari ini?</p>
+
+      <!-- STUDY MATERIALS — all accessible (20% for free, 100% for premium) -->
+      <div class="material-grid material-grid-5">
+        <div
+          class="material-card"
+          onclick="window.location.href = 'kana.html?type=hiragana'"
+        >
+          <span class="mat-icon">あ</span>
+          <span class="mat-name" data-lang="hiragana">HIRAGANA</span>
+          <span class="mat-badge badge-free" data-lang="free">FREE</span>
+        </div>
+
+        <div
+          class="material-card"
+          onclick="window.location.href = 'kana.html?type=katakana'"
+        >
+          <span class="mat-icon">ア</span>
+          <span class="mat-name" data-lang="katakana">KATAKANA</span>
+          <span class="mat-badge badge-free" data-lang="free">FREE</span>
+        </div>
+
+        <div
+          class="material-card"
+          onclick="window.location.href = 'kotoba-n5.html'"
+        >
+          <span class="mat-icon">📖</span>
+          <span class="mat-name" data-lang="kotoba">KOTOBA</span>
+          <span class="mat-badge badge-free" data-lang="free">FREE</span>
+        </div>
+
+        <div
+          class="material-card"
+          onclick="window.location.href = 'bunpou-n5.html'"
+        >
+          <span class="mat-icon">✏️</span>
+          <span class="mat-name" data-lang="bunpou">BUNPOU</span>
+          <span class="mat-badge badge-free" data-lang="free">FREE</span>
+        </div>
+
+        <div
+          class="material-card"
+          onclick="window.location.href = 'kanji-n5.html'"
+        >
+          <span class="mat-icon">漢</span>
+          <span class="mat-name" data-lang="kanji">KANJI</span>
+          <span class="mat-badge badge-free" data-lang="free">FREE</span>
+        </div>
+      </div>
+
+      <!-- QUIZ SECTION -->
+      <div class="quiz-divider"><span>QUIZ</span></div>
+
+      <div class="quiz-grid">
+        <div class="quiz-card" onclick="window.location.href = 'quiz-n5.html'">
+          <span class="quiz-card-icon">📝</span>
+          <span class="quiz-card-name" data-lang="pilihQuiz">QUIZ N5</span>
+          <span class="quiz-card-sub" data-lang="pilihQuizSub"
+            >Kotoba + Bunpou</span
+          >
+        </div>
+
+        <div
+          class="quiz-card"
+          onclick="window.location.href = 'quiz-kanji.html'"
+        >
+          <span class="quiz-card-icon">✍️</span>
+          <span class="quiz-card-name" data-lang="pilihQuizKanji"
+            >QUIZ KANJI</span
+          >
+          <span class="quiz-card-sub" data-lang="free">FREE</span>
+        </div>
+      </div>
+    </div>
+
+    <script src="../js/data.js"></script>
+    <script src="../js/core.js"></script>
+  </body>
+</html>

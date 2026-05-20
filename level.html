@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Suta Sensei — Choose Level</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap"
+    />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/components.css" />
+  </head>
+  <body>
+    <div class="top-bar">
+      <button class="back-btn" onclick="goBack()" aria-label="Back">←</button>
+      <div class="topbar-right">
+        <button class="theme-btn" id="themeBtn" onclick="toggleTheme()">
+          🌙
+        </button>
+        <button class="lang-btn" id="langBtn" onclick="toggleLanguage()">
+          EN
+        </button>
+      </div>
+    </div>
+
+    <div class="container">
+      <h1 data-lang="level">Pilih Level</h1>
+      <p data-lang="levelDesc">Mulai perjalanan belajarmu</p>
+
+      <div class="level-grid">
+        <div class="level-card" onclick="goToN5()">
+          <span class="level-name">N5</span>
+          <span class="level-sub">Beginner</span>
+        </div>
+        <div class="level-card" onclick="goToN4()">
+          <span class="level-name">N4</span>
+          <span class="level-sub">JLPT N4</span>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/core.js"></script>
+  </body>
+</html>

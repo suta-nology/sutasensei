@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Suta Sensei — Learn Japanese online. Hiragana, Katakana, Vocabulary, and Grammar for beginners."
+    />
+    <title>Suta Sensei — Nihongo Class</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap"
+    />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/components.css" />
+  </head>
+  <body>
+    <!-- TOP BAR -->
+    <div class="top-bar">
+      <div style="width: 40px"></div>
+      <div class="topbar-right">
+        <button class="theme-btn" id="themeBtn" onclick="toggleTheme()">
+          🌙
+        </button>
+        <button class="lang-btn" id="langBtn" onclick="toggleLanguage()">
+          EN
+        </button>
+      </div>
+    </div>
+
+    <!-- ① LOGIN PAGE -->
+    <div class="container" id="loginPage">
+      <h1 data-lang="appTitle">NIHONGO CLASS</h1>
+      <p class="jp-subtitle">日本語クラス</p>
+      <p data-lang="loginDesc">Masuk untuk mulai belajar</p>
+
+      <input
+        class="input-field"
+        type="text"
+        id="username"
+        data-placeholder="username"
+        placeholder="Username"
+        onkeydown="handleLoginKey(event)"
+        autocomplete="username"
+      />
+      <input
+        class="input-field"
+        type="password"
+        id="password"
+        data-placeholder="password"
+        placeholder="Password"
+        onkeydown="handleLoginKey(event)"
+        autocomplete="current-password"
+      />
+
+      <button class="btn-primary" onclick="login()" data-lang="login">
+        Masuk
+      </button>
+      <p id="loginStatus"></p>
+
+      <!-- One-click guest login -->
+      <button
+        class="menu-btn menu-btn-ghost"
+        onclick="loginAsGuest()"
+        style="max-width: 400px; margin: 0 auto"
+        data-lang="guestBtn"
+      >
+        👤 Masuk sebagai Tamu (Gratis)
+      </button>
+
+      <div class="auth-switch">
+        <button onclick="showRegister()" data-lang="toRegister">
+          Belum punya akun? Daftar →
+        </button>
+      </div>
+    </div>
+
+    <!-- ② REGISTER PAGE -->
+    <div class="container hidden" id="registerPage">
+      <h1 data-lang="regTitle">Buat Akun</h1>
+      <p class="jp-subtitle">日本語クラス</p>
+      <p data-lang="regDesc">Mulai belajar gratis, kapan saja</p>
+
+      <input
+        class="input-field"
+        type="text"
+        id="regUsername"
+        data-placeholder="username"
+        placeholder="Username"
+        onkeydown="handleRegisterKey(event)"
+        autocomplete="username"
+      />
+      <input
+        class="input-field"
+        type="password"
+        id="regPassword"
+        data-placeholder="password"
+        placeholder="Password"
+        onkeydown="handleRegisterKey(event)"
+        autocomplete="new-password"
+      />
+      <input
+        class="input-field"
+        type="password"
+        id="regConfirm"
+        data-placeholder="confirmPass"
+        placeholder="Confirm Password"
+        onkeydown="handleRegisterKey(event)"
+        autocomplete="new-password"
+      />
+
+      <button class="btn-primary" onclick="register()" data-lang="regBtn">
+        Daftar Sekarang
+      </button>
+      <p id="regStatus"></p>
+
+      <div class="auth-switch">
+        <button onclick="showLogin()" data-lang="toLogin">
+          Sudah punya akun? Masuk →
+        </button>
+      </div>
+    </div>
+
+    <!-- ③ MENU PAGE (after login) -->
+    <div class="container hidden" id="menuPage">
+      <h1 id="welcomeText">こんにちは</h1>
+      <span id="roleText" class="role-badge role-free">FREE</span>
+
+      <button
+        class="menu-btn menu-btn-primary"
+        onclick="goToLevel()"
+        data-lang="startLearning"
+      >
+        Mulai Belajar
+      </button>
+      <button
+        class="menu-btn menu-btn-danger"
+        onclick="logout()"
+        data-lang="logoutBtn"
+      >
+        Keluar
+      </button>
+    </div>
+
+    <!-- Firebase CDN (compat mode — works as plain <script> tags) -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+    <script src="js/firebase.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/core.js"></script>
+  </body>
+</html>
