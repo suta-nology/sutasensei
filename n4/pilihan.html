@@ -37,33 +37,36 @@
         "
       >
         <!-- KOTOBA N4 -->
-        <div
-          class="material-card"
-          onclick="window.location.href = 'kotoba-n4.html'"
-        >
+        <div class="material-card" onclick="window.location.href = 'kotoba-n4.html'">
           <span class="mat-icon">📖</span>
           <span class="mat-name" data-lang="kotoba">KOTOBA</span>
           <span class="mat-badge badge-free" data-lang="free">FREE</span>
+          <div class="mat-progress-wrap" id="prog-kotobaN4" style="display:none">
+            <div class="mat-progress-bar"><div class="mat-progress-fill"></div></div>
+            <span class="mat-progress-pct"></span>
+          </div>
         </div>
 
         <!-- BUNPOU N4 -->
-        <div
-          class="material-card"
-          onclick="window.location.href = 'bunpou-n4.html'"
-        >
+        <div class="material-card" onclick="window.location.href = 'bunpou-n4.html'">
           <span class="mat-icon">✏️</span>
           <span class="mat-name" data-lang="bunpou">BUNPOU</span>
           <span class="mat-badge badge-free" data-lang="free">FREE</span>
+          <div class="mat-progress-wrap" id="prog-bunpouN4" style="display:none">
+            <div class="mat-progress-bar"><div class="mat-progress-fill"></div></div>
+            <span class="mat-progress-pct"></span>
+          </div>
         </div>
 
         <!-- KANJI N4 -->
-        <div
-          class="material-card"
-          onclick="window.location.href = 'kanji-n4.html'"
-        >
+        <div class="material-card" onclick="window.location.href = 'kanji-n4.html'">
           <span class="mat-icon">漢</span>
           <span class="mat-name" data-lang="kanji">KANJI</span>
           <span class="mat-badge badge-free" data-lang="free">FREE</span>
+          <div class="mat-progress-wrap" id="prog-kanjiN4" style="display:none">
+            <div class="mat-progress-bar"><div class="mat-progress-fill"></div></div>
+            <span class="mat-progress-pct"></span>
+          </div>
         </div>
 
         <!-- QUIZ N4 -->
@@ -96,5 +99,21 @@
 
     <script src="../js/data.js"></script>
     <script src="../js/core.js"></script>
+    <script>
+      window.addEventListener("DOMContentLoaded", () => {
+        [
+          { key: "kotobaN4", total: kotobaN4.length, id: "prog-kotobaN4" },
+          { key: "bunpouN4", total: bunpouN4.length, id: "prog-bunpouN4" },
+          { key: "kanjiN4",  total: kanjiN4.length,  id: "prog-kanjiN4"  },
+        ].forEach(({ key, total, id }) => {
+          const pct  = typeof getSeenPercent === "function" ? getSeenPercent(key, total) : 0;
+          const wrap = document.getElementById(id);
+          if (!wrap || pct === 0) return;
+          wrap.style.display = "block";
+          wrap.querySelector(".mat-progress-fill").style.width = pct + "%";
+          wrap.querySelector(".mat-progress-pct").textContent  = pct + "% ✓";
+        });
+      });
+    </script>
   </body>
 </html>

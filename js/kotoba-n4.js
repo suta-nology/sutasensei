@@ -42,14 +42,24 @@ function loadKotoba() {
     const section = document.createElement("section");
     section.className = "kotoba-section";
 
-    const titleEl = document.createElement("h2");
+    const titleEl   = document.createElement("h2");
     titleEl.className = "kotoba-category";
-    const labelKey = catLangKeyN4[cat] || "catN4Act";
+    const labelKey  = catLangKeyN4[cat] || "catN4Act";
+    const seenSet   = typeof getSeenSet === "function" ? getSeenSet("kotobaN4") : new Set();
+    const seenCount = visible.filter((w) => seenSet.has(w.jp)).length;
+    const pct       = visible.length > 0 ? Math.round((seenCount / visible.length) * 100) : 0;
+    const pctBadge  = pct > 0 ? `<span class="progress-pct">${pct}% ✓</span>` : "";
     titleEl.innerHTML = `
       <span>${t[labelKey] || cat.toUpperCase()}</span>
-      <span class="word-count">${premium ? words.length : cutoff} / ${words.length} ${t.wordCount}</span>
+      <span class="word-count">${premium ? words.length : cutoff} / ${words.length} ${t.wordCount} ${pctBadge}</span>
     `;
     section.appendChild(titleEl);
+    if (pct > 0) {
+      const bar = document.createElement("div");
+      bar.className = "section-progress-bar";
+      bar.innerHTML = `<div class="section-progress-fill" style="width:${pct}%"></div>`;
+      section.appendChild(bar);
+    }
 
     const grid = document.createElement("div");
     grid.className = "kotoba-grid";
@@ -65,9 +75,12 @@ function loadKotoba() {
         <span class="k-meaning hidden">${meaning}</span>
       `;
       card.addEventListener("click", () => {
-        card.querySelector(".k-meaning").classList.toggle("hidden");
+        const meaningEl = card.querySelector(".k-meaning");
+        const wasHidden = meaningEl.classList.contains("hidden");
+        meaningEl.classList.toggle("hidden");
         card.classList.add("card-pop");
         setTimeout(() => card.classList.remove("card-pop"), 200);
+        if (wasHidden && typeof markSeen === "function") markSeen("kotobaN4", k.jp);
       });
       grid.appendChild(card);
     });

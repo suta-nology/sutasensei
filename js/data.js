@@ -24,6 +24,10 @@ const language = {
     quizPageTitleN4:"Quiz N4", quizPageDescN4:"Uji kemampuan Kotoba + Bunpou N4mu",
     quizKanjiPageTitleN4:"Quiz Kanji N4", quizKanjiPageDescN4:"Uji kemampuan Kanji N4mu",
     pilihQuizN4:"QUIZ N4", pilihQuizKanjiN4:"QUIZ KANJI",
+    emailPlaceholder:"Email", emailInvalid:"Format email tidak valid",
+    forgotPassword:"Lupa password?", forgotDesc:"Masukkan username kamu — link reset akan dikirim ke email terdaftar.",
+    forgotSend:"Kirim Reset", forgotSent:"✓ Email reset sudah dikirim! Cek kotak masuk kamu.", forgotNotFound:"Username tidak ditemukan", forgotBack:"← Kembali ke Login",
+    progressLabel:"dipelajari",
     freeNote:"(Preview 20% — Upgrade untuk akses penuh)",
   },
   en: {
@@ -49,6 +53,10 @@ const language = {
     quizPageTitleN4:"Quiz N4", quizPageDescN4:"Test your N4 Vocabulary + Grammar",
     quizKanjiPageTitleN4:"Quiz Kanji N4", quizKanjiPageDescN4:"Test your N4 Kanji knowledge",
     pilihQuizN4:"QUIZ N4", pilihQuizKanjiN4:"QUIZ KANJI",
+    emailPlaceholder:"Email", emailInvalid:"Invalid email format",
+    forgotPassword:"Forgot password?", forgotDesc:"Enter your username — a reset link will be sent to your registered email.",
+    forgotSend:"Send Reset Email", forgotSent:"✓ Reset email sent! Check your inbox.", forgotNotFound:"Username not found", forgotBack:"← Back to Login",
+    progressLabel:"studied",
     freeNote:"(20% Preview — Upgrade for full access)",
   },
 };

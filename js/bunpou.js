@@ -22,11 +22,25 @@ function loadBunpou() {
 
   container.innerHTML = "";
 
+  // Show overall progress at top of container
+  const totalSeen = typeof getSeenCount === "function" ? getSeenCount("bunpouN5") : 0;
+  const totalPct  = visible.length > 0 ? Math.round((Math.min(totalSeen, visible.length) / visible.length) * 100) : 0;
+  if (totalPct > 0) {
+    const progressHeader = document.createElement("div");
+    progressHeader.className = "bunpou-progress-header";
+    progressHeader.innerHTML = `
+      <span class="progress-pct">${totalPct}% ${t.progressLabel || "studied"} ✓</span>
+      <div class="section-progress-bar" style="margin-top:6px"><div class="section-progress-fill" style="width:${totalPct}%"></div></div>
+    `;
+    container.appendChild(progressHeader);
+  }
+
   visible.forEach((item, i) => {
     const c = item[currentLang];
     const card = document.createElement("div");
     card.className = "bunpou-card";
     card.style.animationDelay = `${i * 0.07}s`;
+    if (typeof markSeen === "function") markSeen("bunpouN5", item.jp);
     card.innerHTML = `
       <div class="grammar-header">
         <span class="grammar-jp">${item.jp}</span>
