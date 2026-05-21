@@ -60,27 +60,28 @@
       </button>
       <p id="loginStatus"></p>
 
-      <div class="auth-switch" style="margin-top:4px">
-        <button onclick="showForgotPassword()" data-lang="forgotPassword" style="opacity:0.7;font-size:0.85rem">
+      <!-- Lupa password + Daftar dalam satu baris -->
+      <div class="auth-row">
+        <button class="auth-link" onclick="showForgotPassword()" data-lang="forgotPassword">
           Lupa password?
+        </button>
+        <button class="auth-link" onclick="showRegister()" data-lang="toRegister">
+          Belum punya akun? Daftar →
         </button>
       </div>
 
-      <!-- One-click guest login -->
+      <!-- Divider -->
+      <div class="auth-divider"><span data-lang="authOr">atau</span></div>
+
+      <!-- Guest login -->
       <button
         class="menu-btn menu-btn-ghost"
         onclick="loginAsGuest()"
-        style="max-width: 400px; margin: 0 auto"
+        style="max-width:400px;margin:0 auto"
         data-lang="guestBtn"
       >
         👤 Masuk sebagai Tamu (Gratis)
       </button>
-
-      <div class="auth-switch">
-        <button onclick="showRegister()" data-lang="toRegister">
-          Belum punya akun? Daftar →
-        </button>
-      </div>
     </div>
 
     <!-- ② REGISTER PAGE -->
