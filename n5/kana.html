@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-theme="light">
+<html lang="id" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,10 +12,12 @@
     <link rel="stylesheet" href="../css/base.css" />
     <link rel="stylesheet" href="../css/components.css" />
     <link rel="stylesheet" href="../css/pages.css" />
+    <link rel="stylesheet" href="../css/japan.css" />
   </head>
   <body>
     <div class="top-bar">
       <button class="back-btn" onclick="goBack()" aria-label="Back">←</button>
+      <a class="brand" href="../index.html" aria-label="Suta Sensei"><span class="brand-seal" lang="ja">日</span><span>Suta Sensei<small>日本語を学ぼう</small></span></a>
       <div class="topbar-right">
         <button class="mode-btn" id="modeBtn" onclick="toggleMode()">
           🃏 Flashcards
@@ -28,10 +30,15 @@
         </button>
       </div>
     </div>
-    <div class="container">
-      <h1 id="pageTitle">Hiragana</h1>
+    <main class="container kana-page">
+      <p class="eyebrow" data-lang="kanaEyebrow">LANGKAH PERTAMA &middot; AKSARA JEPANG</p>
+      <div class="kana-heading"><div><h1 id="pageTitle">Hiragana</h1>
+      <p data-lang="kanaDescription">Kenali 46 huruf dasar. Baca dari kiri ke kanan, baris demi baris.</p></div></div>
+      <nav class="kana-tabs" aria-label="Kana"><a href="?type=hiragana" id="hiraganaTab">&#12354; Hiragana</a><a href="?type=katakana" id="katakanaTab">&#12450; Katakana</a></nav>
       <div id="studyView">
+        <div class="kana-toolbar"><span data-lang="kanaChart">Goj&#363;on &middot; Tabel 46 huruf dasar</span><label><input type="checkbox" id="romajiToggle" checked onchange="document.getElementById('kanaGrid').classList.toggle('hide-romaji', !this.checked)" /><span data-lang="showRomaji">Tampilkan romaji</span></label></div>
         <div class="kana-grid" id="kanaGrid"></div>
+        <p class="kana-footnote" data-lang="kanaNote">Ruang kosong menandakan tidak ada huruf dasar. &#12435; / &#12531; adalah bunyi n yang berdiri sendiri.</p>
       </div>
       <div id="flashcardView" class="flashcard-view hidden">
         <div class="fc-header">
@@ -45,7 +52,7 @@
             <span data-lang="shuffle">Shuffle</span>
           </label>
         </div>
-        <div class="fc-scene" onclick="fcFlip()">
+        <div class="fc-scene" role="button" tabindex="0" aria-label="Flip flashcard" onclick="fcFlip()" onkeydown="if(event.key === 'Enter') fcFlip()">
           <div class="fc-card-inner" id="fcCardInner">
             <div class="fc-face fc-front">
               <span class="fc-jp-text" id="fcFront">あ</span>
@@ -72,7 +79,7 @@
           </button>
         </div>
       </div>
-    </div>
+    </main>
     <script src="../js/data.js"></script>
     <script src="../js/core.js"></script>
     <script src="../js/kana.js"></script>

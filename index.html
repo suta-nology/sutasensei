@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-theme="light">
+<html lang="id" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -15,11 +15,12 @@
     />
     <link rel="stylesheet" href="css/base.css" />
     <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/japan.css" />
   </head>
   <body>
     <!-- TOP BAR -->
     <div class="top-bar">
-      <div style="width: 40px"></div>
+      <a class="brand" href="index.html" aria-label="Suta Sensei"><span class="brand-seal" lang="ja">日</span><span>Suta Sensei<small>日本語を学ぼう</small></span></a>
       <div class="topbar-right">
         <button class="theme-btn" id="themeBtn" onclick="toggleTheme()">
           🌙
@@ -31,11 +32,21 @@
     </div>
 
     <!-- ① LOGIN PAGE -->
+<main class="auth-layout">
+      <section class="welcome-panel" aria-labelledby="welcomeHeading">
+        <span class="language-note">INDONESIA / ENGLISH &rarr; &#26085;&#26412;&#35486;</span>
+        <p class="eyebrow" data-lang="homeEyebrow">SELANGKAH LEBIH DEKAT KE JEPANG</p>
+        <h2 id="welcomeHeading"><span data-lang="homeHeadline">Perjalanan bahasa Jepangmu</span><br><em data-lang="homeAccent">dimulai di sini.</em></h2>
+        <p data-lang="homeDescription">Dari huruf pertama hingga percakapan sehari-hari. Belajar bahasa Jepang dengan penjelasan dalam bahasa Indonesia atau Inggris, sesuai ritmemu.</p>
+        <div class="japan-scene" aria-hidden="true"><span class="sun"></span><span class="mountain"></span><span class="snow"></span><span class="scene-caption" lang="ja">&#19968;&#27497;&#12378;&#12388;&#12289;&#26085;&#26412;&#35486;&#12290;</span></div>
+        <div class="welcome-footer">HIRAGANA &middot; KATAKANA &middot; KANJI &middot; JLPT N5 / N4</div>
+      </section>
     <div class="container" id="loginPage">
-      <h1 data-lang="appTitle">NIHONGO CLASS</h1>
+      <h1 data-lang="loginHeading">Selamat datang.</h1>
       <p class="jp-subtitle">日本語クラス</p>
       <p data-lang="loginDesc">Masuk untuk mulai belajar</p>
 
+      <label class="field-label" for="username" data-lang="username">username</label>
       <input
         class="input-field"
         type="text"
@@ -45,6 +56,7 @@
         onkeydown="handleLoginKey(event)"
         autocomplete="username"
       />
+      <label class="field-label" for="password" data-lang="password">password</label>
       <input
         class="input-field"
         type="password"
@@ -90,6 +102,7 @@
       <p class="jp-subtitle">日本語クラス</p>
       <p data-lang="regDesc">Mulai belajar gratis, kapan saja</p>
 
+      <label class="field-label" for="regUsername" data-lang="username">username</label>
       <input
         class="input-field"
         type="text"
@@ -99,6 +112,7 @@
         onkeydown="handleRegisterKey(event)"
         autocomplete="username"
       />
+      <label class="field-label" for="regEmail" data-lang="emailPlaceholder">emailPlaceholder</label>
       <input
         class="input-field"
         type="email"
@@ -108,6 +122,7 @@
         onkeydown="handleRegisterKey(event)"
         autocomplete="email"
       />
+      <label class="field-label" for="regPassword" data-lang="password">password</label>
       <input
         class="input-field"
         type="password"
@@ -117,6 +132,7 @@
         onkeydown="handleRegisterKey(event)"
         autocomplete="new-password"
       />
+      <label class="field-label" for="regConfirm" data-lang="confirmPass">confirmPass</label>
       <input
         class="input-field"
         type="password"
@@ -145,6 +161,7 @@
       <p class="jp-subtitle" data-lang="forgotPassword">Lupa password?</p>
       <p data-lang="forgotDesc" style="text-align:center;max-width:360px;margin:0 auto 20px">Masukkan username kamu — link reset akan dikirim ke email terdaftar.</p>
 
+      <label class="field-label" for="forgotUsername" data-lang="username">username</label>
       <input
         class="input-field"
         type="text"
@@ -166,6 +183,7 @@
     <!-- ④ MENU PAGE (after login) -->
     <div class="container hidden" id="menuPage">
       <h1 id="welcomeText">こんにちは</h1>
+      <p class="menu-intro" data-lang="menuIntro">Sedikit demi sedikit, semakin lancar. Lanjutkan belajarmu hari ini.</p>
       <span id="roleText" class="role-badge role-free">FREE</span>
 
       <button
@@ -183,6 +201,8 @@
         Keluar
       </button>
     </div>
+
+    </main>
 
     <!-- Firebase CDN (compat mode — works as plain <script> tags) -->
     <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-theme="light">
+<html lang="id" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,10 +11,12 @@
     />
     <link rel="stylesheet" href="css/base.css" />
     <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/japan.css" />
   </head>
   <body>
     <div class="top-bar">
       <button class="back-btn" onclick="goBack()" aria-label="Back">←</button>
+      <a class="brand" href="index.html" aria-label="Suta Sensei"><span class="brand-seal" lang="ja">日</span><span>Suta Sensei<small>日本語を学ぼう</small></span></a>
       <div class="topbar-right">
         <button class="theme-btn" id="themeBtn" onclick="toggleTheme()">
           🌙
@@ -32,11 +34,11 @@
       <div class="level-grid">
         <div class="level-card" onclick="goToN5()">
           <span class="level-name">N5</span>
-          <span class="level-sub">Beginner</span>
+          <span class="level-sub" data-lang="beginner">Pemula &middot; Mulai dari dasar</span>
         </div>
         <div class="level-card" onclick="goToN4()">
           <span class="level-name">N4</span>
-          <span class="level-sub">JLPT N4</span>
+          <span class="level-sub" data-lang="elementary">Dasar lanjutan &middot; JLPT N4</span>
         </div>
       </div>
     </div>

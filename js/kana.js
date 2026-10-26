@@ -16,7 +16,7 @@ function loadKana() {
   if (!grid) return;
 
   const params = new URLSearchParams(window.location.search);
-  kanaType = params.get("type") || "hiragana";
+  kanaType = params.get("type") === "katakana" ? "katakana" : "hiragana";
   const source = kanaType === "katakana" ? katakana : hiragana;
 
   const titleEl = document.getElementById("pageTitle");
@@ -28,18 +28,31 @@ function loadKana() {
   }
 
   grid.innerHTML = "";
-  source.forEach((item, i) => {
+  document.querySelectorAll(".kana-tabs a").forEach((tab) => {
+    if (tab.id === `${kanaType}Tab`) tab.setAttribute("aria-current", "page");
+    else tab.removeAttribute("aria-current");
+  });
+  ["a", "i", "u", "e", "o"].forEach((vowel) => {
+    const heading = document.createElement("div");
+    heading.className = "kana-column";
+    heading.textContent = vowel;
+    heading.setAttribute("aria-hidden", "true");
+    grid.appendChild(heading);
+  });
+  // Place wo in the o column and give standalone n its own final row.
+  const chart = source.slice(0, 45).concat([
+    source[45], {jp:"",romaji:""}, {jp:"",romaji:""}, {jp:"",romaji:""}, source[47],
+    source[49], {jp:"",romaji:""}, {jp:"",romaji:""}, {jp:"",romaji:""}, {jp:"",romaji:""},
+  ]);
+  chart.forEach((item) => {
     const card = document.createElement("div");
     card.className = "card kana-card";
-    card.style.animationDelay = `${i * 0.018}s`;
     if (!item.jp) {
-      card.style.visibility = "hidden";
+      card.classList.add("kana-empty");
+      card.setAttribute("aria-hidden", "true");
     } else {
       card.innerHTML = `${item.jp}<span>${item.romaji}</span>`;
-      card.addEventListener("click", () => {
-        card.classList.add("card-pop");
-        setTimeout(() => card.classList.remove("card-pop"), 200);
-      });
+      card.setAttribute("aria-label", `${item.jp}, ${item.romaji}`);
     }
     grid.appendChild(card);
   });
@@ -91,6 +104,8 @@ function renderFc() {
   document.getElementById("fcFront").textContent = item.jp;
   document.getElementById("fcRomaji").textContent = item.romaji;
   document.getElementById("fcHint").textContent = t.tapFlip;
+  document.getElementById("fcPrevBtn").disabled = fcIndex === 0;
+  document.getElementById("fcNextBtn").disabled = fcIndex === total - 1;
 
   document.getElementById("fcCardInner").classList.toggle("flipped", fcFlipped);
   document.getElementById("fcPrevBtn").textContent = `← ${t.prev}`;
@@ -152,6 +167,7 @@ function fcToggleShuffle() {
 
 document.addEventListener("keydown", (e) => {
   if (kanaMode !== "flash") return;
+  if (e.target.closest("button, input, a")) return;
   if (e.key === "ArrowRight") fcNext();
   if (e.key === "ArrowLeft") fcPrev();
   if (e.key === " ") {

@@ -4,6 +4,7 @@ let currentLang = localStorage.getItem("lang") || "id";
 
 function applyLanguage() {
   const t = language[currentLang];
+  document.documentElement.lang = currentLang;
   document.querySelectorAll("[data-lang]").forEach((el) => {
     const key = el.dataset.lang;
     if (t[key] !== undefined && typeof t[key] === "string") el.textContent = t[key];
@@ -15,6 +16,16 @@ function applyLanguage() {
   const langBtn = document.getElementById("langBtn");
   if (langBtn) langBtn.textContent = currentLang === "id" ? "EN" : "ID";
   _updateThemeBtn();
+  document.querySelectorAll("[onclick]").forEach((el) => {
+    if (el.tagName !== "DIV" || !el.matches(".material-card, .level-card, .quiz-grid .quiz-card")) return;
+    el.setAttribute("role", "button");
+    el.tabIndex = el.classList.contains("disabled") ? -1 : 0;
+    el.onkeydown = (event) => {
+      if (event.key === "Enter" || event.key === " ") { event.preventDefault(); el.click(); }
+    };
+  });
+  document.querySelectorAll("[data-placeholder]").forEach(el => el.setAttribute("aria-label", el.placeholder));
+  if (langBtn) langBtn.setAttribute("aria-label", currentLang === "id" ? "Switch to English" : "Ganti ke bahasa Indonesia");
 }
 
 function toggleLanguage() {
@@ -45,6 +56,7 @@ function _updateThemeBtn() {
   const themeBtn = document.getElementById("themeBtn");
   if (!themeBtn) return;
   const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+  themeBtn.setAttribute("aria-label", language[currentLang][isDark ? "lightMode" : "darkMode"]);
   themeBtn.textContent = isDark ? "☀️" : "🌙";
 }
 
