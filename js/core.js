@@ -42,9 +42,7 @@ function toggleLanguage() {
 /* ── DARK / LIGHT THEME ── */
 
 function applyTheme(theme) {
-  document.documentElement.setAttribute("data-theme", theme);
-  localStorage.setItem("theme", theme);
-  _updateThemeBtn();
+  window.SutaTheme.set(theme);
 }
 
 function toggleTheme() {
@@ -185,7 +183,7 @@ function showMenu() {
 async function logout() {
   await _saveSeenToFirestore();
   try { await _auth.signOut(); } catch (_) {}
-  localStorage.clear();
+  clearAuthSession();
   location.reload();
 }
 
@@ -352,8 +350,15 @@ function handleForgotKey(e)   { if (e.key === "Enter") forgotPassword(); }
 
 /* ── INIT ── */
 
+function clearAuthSession() {
+  // Signing out should not reset the user's appearance or language preference.
+  for (const key of Object.keys(localStorage)) {
+    if (key !== "theme" && key !== "lang") localStorage.removeItem(key);
+  }
+}
+
 window.addEventListener("DOMContentLoaded", () => {
-  applyTheme(localStorage.getItem("theme") || "light");
+  window.SutaTheme.sync();
   applyLanguage();
   checkPremium();
 
@@ -376,7 +381,7 @@ window.addEventListener("DOMContentLoaded", () => {
         localStorage.getItem("loggedIn") === "true" &&
         localStorage.getItem("username") !== "guest"
       ) {
-        localStorage.clear();
+        clearAuthSession();
         location.reload();
       }
     });
